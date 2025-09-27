@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPTV Yayını</title>
+</head>
+<body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#000;">
+  <video id="player" controls autoplay width="720"></video>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    async function loadStream() {
+      const resp = await fetch('stream_url.txt');
+      const url = await resp.text();
+      const video = document.getElementById('player');
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url.trim());
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = url.trim();
+      }
+    }
+    loadStream();
+  </script>
+</body>
+</html>
