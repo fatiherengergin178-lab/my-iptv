@@ -1,1 +1,1 @@
-https://forecasts-appliance-code-towers.trycloudflare.com
+https://forecasts-appliance-code-towers.trycloudflare.com/stream.m3u8
